@@ -135,7 +135,7 @@
 							</#list>
                             </select>
                         </div>
-                        <label for="lastname" class="col-sm-2 control-label">Cron<font color="red">*</font></label>
+                        <label for="lastname" class="col-sm-2 control-label">Cron<font color="red">*</font><a href="http://cron.qqe2.com/" target="_blank">?</a></label>
                         <div class="col-sm-4"><input type="text" class="form-control" name="jobCron" placeholder="${I18n.system_please_input}Cron" maxlength="128" ></div>
                     </div>
                     <div class="form-group">
@@ -331,7 +331,7 @@ exit 0
 							</#list>
                             </select>
                         </div>
-                        <label for="lastname" class="col-sm-2 control-label">Cron<font color="red">*</font></label>
+                        <label for="lastname" class="col-sm-2 control-label">Cron<font color="red">*</font><a href="http://cron.qqe2.com/" target="_blank">?</a></label>
                         <div class="col-sm-4"><input type="text" class="form-control" name="jobCron" placeholder="${I18n.system_please_input}Cron" maxlength="128" ></div>
                     </div>
                     <div class="form-group">
