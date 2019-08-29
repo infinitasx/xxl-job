@@ -1,9 +1,11 @@
 package com.xxl.job.executor.service.jobhandler;
 
+import com.alibaba.fastjson.JSONObject;
 import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.handler.IJobHandler;
 import com.xxl.job.core.handler.annotation.JobHandler;
 import com.xxl.job.core.log.XxlJobLogger;
+import com.xxl.job.executor.model.PyResult;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -61,9 +63,13 @@ public class HttpJobHandler extends IJobHandler {
                 result.append(line);
             }
             String responseMsg = result.toString();
-
             XxlJobLogger.log(responseMsg);
-            return SUCCESS;
+            PyResult pyResult = JSONObject.parseObject(responseMsg, PyResult.class);
+            if (pyResult.getCode() != 0){
+                return FAIL ;
+            }else {
+                return SUCCESS ;
+            }
         } catch (Exception e) {
             XxlJobLogger.log(e);
             return FAIL;
