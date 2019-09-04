@@ -2,6 +2,7 @@ package com.xxl.job.admin.controller;
 
 import com.xxl.job.admin.core.conf.XxlJobScheduler;
 import com.xxl.job.admin.core.exception.XxlJobException;
+import com.xxl.job.admin.core.model.XxlJobDetailLog;
 import com.xxl.job.admin.core.model.XxlJobGroup;
 import com.xxl.job.admin.core.model.XxlJobInfo;
 import com.xxl.job.admin.core.model.XxlJobLog;
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -86,7 +89,7 @@ public class JobLogController {
 	public Map<String, Object> pageList(HttpServletRequest request,
 										@RequestParam(required = false, defaultValue = "0") int start,
 										@RequestParam(required = false, defaultValue = "10") int length,
-										int jobGroup, int jobId, int logStatus, String filterTime) {
+										int jobGroup, int jobId, int logStatus, String filterTime) throws Exception {
 
 		// valid permission
 		JobInfoController.validPermission(request, jobGroup);	// 仅管理员支持查询全部；普通用户仅支持查询有权限的 jobGroup
@@ -105,13 +108,42 @@ public class JobLogController {
 		// page query
 		List<XxlJobLog> list = xxlJobLogDao.pageList(start, length, jobGroup, jobId, triggerTimeStart, triggerTimeEnd, logStatus);
 		int list_count = xxlJobLogDao.pageListCount(start, length, jobGroup, jobId, triggerTimeStart, triggerTimeEnd, logStatus);
+
+
+		List<XxlJobDetailLog> jobDetailLogs = new ArrayList<>() ;
+		for (XxlJobLog xxlJobLog : list) {
+			XxlJobInfo xxlJobInfo = xxlJobInfoDao.loadById(xxlJobLog.getJobId());
+
+			XxlJobDetailLog xxlJobDetailLog = setJobDetailLog(xxlJobLog);
+			xxlJobDetailLog.setJobDesc(xxlJobInfo.getJobDesc());
+			jobDetailLogs.add(xxlJobDetailLog) ;
+		}
 		
 		// package result
 		Map<String, Object> maps = new HashMap<String, Object>();
 	    maps.put("recordsTotal", list_count);		// 总记录数
 	    maps.put("recordsFiltered", list_count);	// 过滤后的总记录数
-	    maps.put("data", list);  					// 分页列表
+	    maps.put("data", jobDetailLogs);  					// 分页列表
 		return maps;
+	}
+
+	/**
+	 * set JobDetail info
+	 * @param xxlJobLog
+	 * @return
+	 * @throws IllegalAccessException
+	 */
+	private XxlJobDetailLog setJobDetailLog(XxlJobLog xxlJobLog) throws IllegalAccessException {
+		XxlJobDetailLog xxlJobDetailLog = new XxlJobDetailLog() ;
+
+		for (Field declaredField : xxlJobLog.getClass().getDeclaredFields()) {
+			declaredField.setAccessible(true);
+
+			Object value = declaredField.get(xxlJobLog);
+
+			declaredField.set(xxlJobDetailLog,value);
+		}
+		return xxlJobDetailLog;
 	}
 
 	@RequestMapping("/logDetailPage")
