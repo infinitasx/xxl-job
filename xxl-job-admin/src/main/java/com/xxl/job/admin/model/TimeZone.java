@@ -1,0 +1,51 @@
+package com.xxl.job.admin.model;
+
+/**
+ * Function:
+ *
+ * @author crossoverJie
+ * Date: 2019-09-05 14:57
+ * @since JDK 1.8
+ */
+public class TimeZone {
+
+
+    /**
+     * between : -2
+     * name : melb
+     */
+
+    private String between;
+    private String name;
+    private String zhName ;
+
+    public TimeZone(String name,String zhName,String between) {
+        this.between = between;
+        this.name = name;
+        this.zhName = zhName ;
+    }
+
+    public String getZhName() {
+        return zhName;
+    }
+
+    public void setZhName(String zhName) {
+        this.zhName = zhName;
+    }
+
+    public String getBetween() {
+        return between;
+    }
+
+    public void setBetween(String between) {
+        this.between = between;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}

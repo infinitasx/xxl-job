@@ -475,6 +475,7 @@ $(function() {
         $("#updateModal .form input[name='childJobId']").val( row.childJobId );
 		$('#updateModal .form select[name=executorBlockStrategy] option[value='+ row.executorBlockStrategy +']').prop('selected', true);
 		$('#updateModal .form select[name=glueType] option[value='+ row.glueType +']').prop('selected', true);
+		$('#updateModal .form select[name=tzName] option[value='+ row.tzName +']').prop('selected', true);
 
         $("#updateModal .form select[name=glueType]").change();
 

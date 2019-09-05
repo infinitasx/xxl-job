@@ -39,6 +39,18 @@ public class XxlJobInfo {
 	private long triggerLastTime;	// 上次调度时间
 	private long triggerNextTime;	// 下次调度时间
 
+	/**
+	 * 时区名称
+	 */
+	private String tzName ;
+
+	public String getTzName() {
+		return tzName;
+	}
+
+	public void setTzName(String tzName) {
+		this.tzName = tzName;
+	}
 
 	public int getId() {
 		return id;
