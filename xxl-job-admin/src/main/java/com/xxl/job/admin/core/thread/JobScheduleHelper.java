@@ -82,7 +82,9 @@ public class JobScheduleHelper {
                                     // 2.1、trigger-expire > 5s：pass && make next-trigger-time
 
                                     // fresh next
-                                    Date nextValidTime = new CronExpression(jobInfo.getJobCron()).getNextValidTimeAfter(new Date());
+                                    CronExpression cronExpression = new CronExpression(jobInfo.getJobCron());
+                                    cronExpression.setTimeZone(TimeZone.getTimeZone(jobInfo.getTzName()));
+                                    Date nextValidTime = cronExpression.getNextValidTimeAfter(new Date());
                                     if (nextValidTime != null) {
                                         jobInfo.setTriggerLastTime(jobInfo.getTriggerNextTime());
                                         jobInfo.setTriggerNextTime(nextValidTime.getTime());
@@ -96,6 +98,7 @@ public class JobScheduleHelper {
                                     // 2.2、trigger-expire < 5s：direct-trigger && make next-trigger-time
 
                                     CronExpression cronExpression = new CronExpression(jobInfo.getJobCron());
+                                    cronExpression.setTimeZone(TimeZone.getTimeZone(jobInfo.getTzName()));
                                     long nextTime = cronExpression.getNextValidTimeAfter(new Date()).getTime();
 
                                     // 1、trigger
@@ -117,7 +120,9 @@ public class JobScheduleHelper {
                                         pushTimeRing(ringSecond, jobInfo.getId());
 
                                         // 3、fresh next
-                                        Date nextValidTime = new CronExpression(jobInfo.getJobCron()).getNextValidTimeAfter(new Date(jobInfo.getTriggerNextTime()));
+                                        CronExpression expression = new CronExpression(jobInfo.getJobCron());
+                                        expression.setTimeZone(TimeZone.getTimeZone(jobInfo.getTzName()));
+                                        Date nextValidTime = expression.getNextValidTimeAfter(new Date(jobInfo.getTriggerNextTime()));
                                         if (nextValidTime != null) {
                                             jobInfo.setTriggerLastTime(jobInfo.getTriggerNextTime());
                                             jobInfo.setTriggerNextTime(nextValidTime.getTime());
@@ -139,7 +144,9 @@ public class JobScheduleHelper {
                                     pushTimeRing(ringSecond, jobInfo.getId());
 
                                     // 3、fresh next
-                                    Date nextValidTime = new CronExpression(jobInfo.getJobCron()).getNextValidTimeAfter(new Date(jobInfo.getTriggerNextTime()));
+                                    CronExpression cronExpression = new CronExpression(jobInfo.getJobCron());
+                                    cronExpression.setTimeZone(TimeZone.getTimeZone(jobInfo.getTzName()));
+                                    Date nextValidTime = cronExpression.getNextValidTimeAfter(new Date(jobInfo.getTriggerNextTime()));
                                     if (nextValidTime != null) {
                                         jobInfo.setTriggerLastTime(jobInfo.getTriggerNextTime());
                                         jobInfo.setTriggerNextTime(nextValidTime.getTime());

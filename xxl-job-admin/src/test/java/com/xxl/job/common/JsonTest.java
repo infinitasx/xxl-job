@@ -58,4 +58,20 @@ public class JsonTest {
         System.out.println(80%60);
         System.out.println(79%60);
     }
+
+
+    @Test
+    public void common(){
+        List<TimeZone> list = new ArrayList<>();
+        TimeZone t1 = new TimeZone("zhangsan/1","张三");
+        TimeZone t2 = new TimeZone("lisi/2","李四");
+        list.add(t1);
+        list.add(t2);
+
+        for (TimeZone timeZone : list) {
+            timeZone.setName(timeZone.getName() + "====");
+        }
+
+
+    }
 }
