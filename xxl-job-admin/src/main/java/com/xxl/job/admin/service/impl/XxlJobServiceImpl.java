@@ -194,7 +194,10 @@ public class XxlJobServiceImpl implements XxlJobService {
 		long nextTriggerTime = exists_jobInfo.getTriggerNextTime();
 		if (exists_jobInfo.getTriggerStatus() == 1 && !jobInfo.getJobCron().equals(exists_jobInfo.getJobCron()) ) {
 			try {
-				Date nextValidTime = new CronExpression(jobInfo.getJobCron()).getNextValidTimeAfter(new Date(System.currentTimeMillis() + JobScheduleHelper.PRE_READ_MS));
+
+				CronExpression cronExpression = new CronExpression(jobInfo.getJobCron());
+				cronExpression.setTimeZone(TimeZone.getTimeZone(jobInfo.getTzName()));
+				Date nextValidTime = cronExpression.getNextValidTimeAfter(new Date(System.currentTimeMillis() + JobScheduleHelper.PRE_READ_MS));
 				if (nextValidTime == null) {
 					return new ReturnT<String>(ReturnT.FAIL_CODE, I18nUtil.getString("jobinfo_field_cron_never_fire"));
 				}
