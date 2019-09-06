@@ -14,15 +14,14 @@ public class TimeZone {
      * between : -2
      * name : melb
      */
-
-    private String between;
     private String name;
     private String zhName ;
+    private String shortName ;
 
-    public TimeZone(String name,String zhName,String between) {
-        this.between = between;
+    public TimeZone(String name,String zhName) {
         this.name = name;
         this.zhName = zhName ;
+        this.shortName = name.split("/")[1] ;
     }
 
     public String getZhName() {
@@ -33,19 +32,15 @@ public class TimeZone {
         this.zhName = zhName;
     }
 
-    public String getBetween() {
-        return between;
-    }
-
-    public void setBetween(String between) {
-        this.between = between;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getShortName() {
+        return shortName;
     }
 }

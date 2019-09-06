@@ -6,7 +6,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -49,24 +48,6 @@ public class TimeZoneConfigBean {
         }
     }
 
-
-    /**
-     * 通过城市名称获取相差时间
-     * @param key
-     * @return
-     */
-    public String get(String key){
-        if (relationship != null){
-            return relationship.get(key) ;
-        }else {
-            relationship = new HashMap<>(8) ;
-            for (TimeZone timeZone : timeZones) {
-                relationship.put(timeZone.getName(),timeZone.getBetween()) ;
-            }
-            return relationship.get(key) ;
-
-        }
-    }
 
 
 

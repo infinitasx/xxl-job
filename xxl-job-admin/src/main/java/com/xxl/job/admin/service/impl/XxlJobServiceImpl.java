@@ -245,7 +245,9 @@ public class XxlJobServiceImpl implements XxlJobService {
 		// next trigger time (5s后生效，避开预读周期)
 		long nextTriggerTime = 0;
 		try {
-			Date nextValidTime = new CronExpression(xxlJobInfo.getJobCron()).getNextValidTimeAfter(new Date(System.currentTimeMillis() + JobScheduleHelper.PRE_READ_MS));
+			CronExpression cronExpression = new CronExpression(xxlJobInfo.getJobCron());
+			cronExpression.setTimeZone(TimeZone.getTimeZone(xxlJobInfo.getTzName()));
+			Date nextValidTime = cronExpression.getNextValidTimeAfter(new Date(System.currentTimeMillis() + JobScheduleHelper.PRE_READ_MS));
 			if (nextValidTime == null) {
 				return new ReturnT<String>(ReturnT.FAIL_CODE, I18nUtil.getString("jobinfo_field_cron_never_fire"));
 			}

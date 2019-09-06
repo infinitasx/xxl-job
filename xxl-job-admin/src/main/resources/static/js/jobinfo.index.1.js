@@ -50,7 +50,7 @@ $(function() {
 					},
 					{
 						"data": 'glueType',
-						"width":'25%',
+						"width":'15%',
 						"visible" : true,
 						"render": function ( data, type, row ) {
 							var glueTypeTitle = findGlueTypeTitle(row.glueType);
@@ -97,6 +97,16 @@ $(function() {
 	                		return data;
 	                	}
 	                },
+
+					{
+						"data": 'tzName',
+						"width":'10%',
+						"visible" : true,
+						"render": function ( data, type, row ) {
+							return data;
+						}
+					},
+
 	                {
 						"data": I18n.system_opt ,
 						"width":'10%',
@@ -475,7 +485,8 @@ $(function() {
         $("#updateModal .form input[name='childJobId']").val( row.childJobId );
 		$('#updateModal .form select[name=executorBlockStrategy] option[value='+ row.executorBlockStrategy +']').prop('selected', true);
 		$('#updateModal .form select[name=glueType] option[value='+ row.glueType +']').prop('selected', true);
-		$('#updateModal .form select[name=tzName] option[value='+ row.tzName +']').prop('selected', true);
+		// $('#updateModal .form select[name=tzName] [shortName='+ row.tzName +']').prop('selected', true);
+		$('#updateModal .form select[name=tzName] ').val(row.tzName)
 
         $("#updateModal .form select[name=glueType]").change();
 

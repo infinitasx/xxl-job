@@ -88,6 +88,7 @@
 					                  	<th name="author" >${I18n.jobinfo_field_author}</th>
 					                  	<th name="alarmEmail" >${I18n.jobinfo_field_alarmemail}</th>
 					                  	<th name="triggerStatus" >${I18n.system_status}</th>
+					                  	<th name="tzName" >${I18n.system_tz}</th>
 					                  	<th>${I18n.system_opt}</th>
 					                </tr>
 				                </thead>
@@ -388,7 +389,7 @@ exit 0
                         <div class="col-sm-4">
                             <select class="form-control" name="tzName" >
                                 <#list timeZones as tz>
-                                    <option value="${tz.name}" >${tz.zhName}</option>
+                                    <option shortName="${tz.shortName}" value="${tz.name}" >${tz.zhName}</option>
                                 </#list>
                             </select>
                         </div>

@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Function:
@@ -19,22 +18,22 @@ public class JsonTest {
 
     @Test
     public void test1(){
-        TimeZone t1 = new TimeZone("melb","墨尔本","-2") ;
-        TimeZone t2 = new TimeZone("syd","悉尼","-3") ;
+        TimeZone t1 = new TimeZone("Australia/Sydney","堪培拉,墨尔本,悉尼(UTC+10:00)") ;
+        TimeZone t2 = new TimeZone("Asia/Shanghai","北京,重庆,香港特别行政区,乌鲁木齐(UTC+08:00)") ;
+        TimeZone t3 = new TimeZone("Asia/Tokyo","大阪,札幌,东京(UTC+09:00)") ;
 
         List<TimeZone> list = new ArrayList<>() ;
         list.add(t1) ;
         list.add(t2) ;
+        list.add(t3) ;
 
         System.out.println(JSON.toJSONString(list)) ;
 
 
-        String json = "[{\"between\":\"-2\",\"name\":\"melb\"},{\"between\":\"-3\",\"name\":\"syd\"}]" ;
+        String json = "[{\"name\":\"Australia/Sydney\",\"zhName\":\"堪培拉,墨尔本,悉尼(UTC+10:00)\"},{\"name\":\"Asia/Shanghai\",\"zhName\":\"北京,重庆,香港特别行政区,乌鲁木齐(UTC+08:00)\"},{\"name\":\"Asia/Tokyo\",\"zhName\":\"大阪,札幌,东京(UTC+09:00)\"}]" ;
 
 
         List<TimeZone> list1 = JSON.parseArray(json, TimeZone.class);
-
-        Map map = JSON.parseObject(json);
 
     }
 
@@ -43,8 +42,11 @@ public class JsonTest {
     public void tz(){
         String[] availableIDs = java.util.TimeZone.getAvailableIDs();
         for (String availableID : availableIDs) {
-            System.out.println(availableID);
+//            System.out.println(availableID);
         }
+
+        java.util.TimeZone timeZone = java.util.TimeZone.getTimeZone("Australia/Sydney");
+        System.out.println(timeZone.getDisplayName());
     }
 
 
