@@ -37,4 +37,23 @@ public class JsonTest {
         Map map = JSON.parseObject(json);
 
     }
+
+
+    @Test
+    public void tz(){
+        String[] availableIDs = java.util.TimeZone.getAvailableIDs();
+        for (String availableID : availableIDs) {
+            System.out.println(availableID);
+        }
+    }
+
+
+    @Test
+    public void mod(){
+        int ringSecond = (int)(1567701000L/1000)%60;
+        System.out.println(ringSecond);
+        System.out.println("=============");
+        System.out.println(80%60);
+        System.out.println(79%60);
+    }
 }

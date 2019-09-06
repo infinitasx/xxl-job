@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 /**
  * index controller
@@ -67,6 +68,8 @@ public class JobInfoController {
 
 		model.addAttribute("JobGroupList", jobGroupList);
 		model.addAttribute("jobGroup", jobGroup);
+
+		System.out.println("==="+ TimeZone.getDefault().getID());
 
 		return "jobinfo/jobinfo.index";
 	}
