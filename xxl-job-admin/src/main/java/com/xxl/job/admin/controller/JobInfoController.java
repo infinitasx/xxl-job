@@ -15,6 +15,8 @@ import com.xxl.job.admin.service.XxlJobService;
 import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.enums.ExecutorBlockStrategyEnum;
 import com.xxl.job.core.glue.GlueTypeEnum;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +39,8 @@ import java.util.TimeZone;
 @Controller
 @RequestMapping("/jobinfo")
 public class JobInfoController {
+
+	private static Logger logger = LoggerFactory.getLogger(JobInfoController.class);
 
 	@Resource
 	private XxlJobGroupDao xxlJobGroupDao;
@@ -69,7 +73,7 @@ public class JobInfoController {
 		model.addAttribute("JobGroupList", jobGroupList);
 		model.addAttribute("jobGroup", jobGroup);
 
-		System.out.println("==="+ TimeZone.getDefault().getID());
+		logger.info("==="+ TimeZone.getDefault().getID());
 
 		return "jobinfo/jobinfo.index";
 	}
