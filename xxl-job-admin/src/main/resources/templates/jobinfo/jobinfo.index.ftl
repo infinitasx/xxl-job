@@ -89,6 +89,7 @@
 					                  	<th name="alarmEmail" >${I18n.jobinfo_field_alarmemail}</th>
 					                  	<th name="triggerStatus" >${I18n.system_status}</th>
 					                  	<th name="tzName" >${I18n.system_tz}</th>
+					                  	<th name="nextTime" >${I18n.system_next_time}</th>
 					                  	<th>${I18n.system_opt}</th>
 					                </tr>
 				                </thead>
@@ -136,7 +137,7 @@
 							</#list>
                             </select>
                         </div>
-                        <label for="lastname" class="col-sm-2 control-label">Cron<font color="red">*</font><a href="http://cron.qqe2.com/" target="_blank">?</a></label>
+                        <label for="lastname" class="col-sm-2 control-label">Cron<font color="red">*</font><a href="https://tool.lu/crontab/" target="_blank">?</a></label>
                         <div class="col-sm-4"><input type="text" class="form-control" name="jobCron" placeholder="${I18n.system_please_input}Cron" maxlength="128" ></div>
                     </div>
                     <div class="form-group">
@@ -344,7 +345,7 @@ exit 0
 							</#list>
                             </select>
                         </div>
-                        <label for="lastname" class="col-sm-2 control-label">Cron<font color="red">*</font><a href="http://cron.qqe2.com/" target="_blank">?</a></label>
+                        <label for="lastname" class="col-sm-2 control-label">Cron<font color="red">*</font><a href="https://tool.lu/crontab/" target="_blank">?</a></label>
                         <div class="col-sm-4"><input type="text" class="form-control" name="jobCron" placeholder="${I18n.system_please_input}Cron" maxlength="128" ></div>
                     </div>
                     <div class="form-group">

@@ -28,7 +28,7 @@ $(function() {
 	                	"data": 'id',
 						"bSortable": false,
 						"visible" : true,
-						"width":'7%'
+						"width":'5%'
 					},
 	                { 
 	                	"data": 'jobGroup', 
@@ -46,7 +46,7 @@ $(function() {
 	                {
 	                	"data": 'jobDesc',
 						"visible" : true,
-						"width":'25%'
+						"width":'15%'
 					},
 					{
 						"data": 'glueType',
@@ -104,6 +104,27 @@ $(function() {
 						"visible" : true,
 						"render": function ( data, type, row ) {
 							return data;
+						}
+					},
+					{
+						"data": 'triggerNextTime',
+						"width":'10%',
+						"visible" : true,
+						"render": function ( data, type, row ) {
+							if (data !== 0){
+								var date = new Date(data) ;
+								var year = date.getFullYear();  // 获取完整的年份(4位,1970)
+								var month = date.getMonth() + 1;  // 获取月份(0-11,0代表1月,用的时候记得加上1)
+								var day = date.getDate();  // 获取日(1-31)
+								var hours = date.getHours();  // 获取小时数(0-23)
+								var min = date.getMinutes();  // 获取分钟数(0-59)
+								var seconds = date.getSeconds();  // 获取秒数(0-59)
+								var res = year + '-' + month + '-' + day + " " + hours + ":" + min + ":" + seconds;
+								return res ;
+							}else {
+								return null;
+							}
+
 						}
 					},
 
