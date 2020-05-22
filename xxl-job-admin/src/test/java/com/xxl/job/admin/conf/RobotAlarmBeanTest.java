@@ -18,7 +18,7 @@ public class RobotAlarmBeanTest {
     @Test
     public void alarm() {
 
-        robotAlarmBean.alarm("hahah") ;
+        robotAlarmBean.alarm("") ;
 
     }
 }

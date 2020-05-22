@@ -62,8 +62,9 @@ public class RobotAlarmBean {
         } catch (UnsupportedEncodingException e) {
             return false ;
         }
-        Request.Builder requestBuilder = (new Request.Builder()).headers(Headers.of(buildHeader(url, "GET", null)));
-        String url = urlPrefix + this.url + "?msg=" + msg;
+        String finalUrl = this.url + "?msg=" + msg ;
+        Request.Builder requestBuilder = (new Request.Builder()).headers(Headers.of(buildHeader(finalUrl, "GET", null)));
+        String url = urlPrefix + finalUrl;
         logger.info("alarm url={}", url);
         Request req = requestBuilder.url(url).build();
 

@@ -62,6 +62,7 @@ $(function() {
 						}
 					},
 	                { "data": 'executorParam', "visible" : false},
+					{ "data": 'robotAlarm', "visible" : false},
 					{
 						"data": 'jobCron',
 						"visible" : true,
@@ -507,7 +508,8 @@ $(function() {
 		$('#updateModal .form select[name=executorBlockStrategy] option[value='+ row.executorBlockStrategy +']').prop('selected', true);
 		$('#updateModal .form select[name=glueType] option[value='+ row.glueType +']').prop('selected', true);
 		// $('#updateModal .form select[name=tzName] [shortName='+ row.tzName +']').prop('selected', true);
-		$('#updateModal .form select[name=tzName] ').val(row.tzName)
+		$('#updateModal .form select[name=tzName] ').val(row.tzName);
+		$("#updateModal .form input[name='robotAlarm']").val( row.robotAlarm );
 
         $("#updateModal .form select[name=glueType]").change();
 
