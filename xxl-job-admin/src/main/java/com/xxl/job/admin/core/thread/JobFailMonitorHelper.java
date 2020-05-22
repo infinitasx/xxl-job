@@ -1,5 +1,6 @@
 package com.xxl.job.admin.core.thread;
 
+import com.google.common.base.Strings;
 import com.xxl.job.admin.core.conf.XxlJobAdminConfig;
 import com.xxl.job.admin.core.model.XxlJobGroup;
 import com.xxl.job.admin.core.model.XxlJobInfo;
@@ -77,7 +78,10 @@ public class JobFailMonitorHelper {
 										logger.error(e.getMessage(), e);
 									}
 									newAlarmStatus = alarmResult?2:3;
-								} else {
+								} else if (!Strings.isNullOrEmpty(info.getRobotAlarm())){
+									boolean alarmResult = failRobotAlarm(info, log) ;
+									newAlarmStatus = alarmResult?2:3;
+								}else {
 									newAlarmStatus = 1;
 								}
 
@@ -198,4 +202,22 @@ public class JobFailMonitorHelper {
 		return alarmResult;
 	}
 
+
+	private boolean failRobotAlarm(XxlJobInfo info, XxlJobLog jobLog){
+		StringBuilder msg = new StringBuilder() ;
+		msg.append("Alarm Job LogId=")
+				.append(jobLog.getId())
+				.append("\n") ;
+
+		// alarmContent
+		if (jobLog.getTriggerCode() != ReturnT.SUCCESS_CODE) {
+			msg.append("TriggerMsg=").append(jobLog.getTriggerMsg()).append("\n") ;
+		}
+
+		msg.append("@").append(info.getAuthor()).append(":").append(info.getRobotAlarm());
+		logger.info("alarm robot msg={}", msg.toString());
+
+		return XxlJobAdminConfig.getAdminConfig().getRobotAlarmBean().alarm(msg.toString());
+
+	}
 }

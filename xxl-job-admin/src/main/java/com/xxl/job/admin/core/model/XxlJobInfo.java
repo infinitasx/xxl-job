@@ -44,6 +44,19 @@ public class XxlJobInfo {
 	 */
 	private String tzName ;
 
+	/**
+	 * 报警内容
+	 */
+	private String robotAlarm ;
+
+	public String getRobotAlarm() {
+		return robotAlarm;
+	}
+
+	public void setRobotAlarm(String robotAlarm) {
+		this.robotAlarm = robotAlarm;
+	}
+
 	public String getTzName() {
 		return tzName;
 	}

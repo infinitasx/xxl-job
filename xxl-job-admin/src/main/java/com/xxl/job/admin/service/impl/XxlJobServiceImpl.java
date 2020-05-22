@@ -222,6 +222,7 @@ public class XxlJobServiceImpl implements XxlJobService {
 		exists_jobInfo.setChildJobId(jobInfo.getChildJobId());
 		exists_jobInfo.setTriggerNextTime(nextTriggerTime);
 		exists_jobInfo.setTzName(jobInfo.getTzName());
+		exists_jobInfo.setRobotAlarm(jobInfo.getRobotAlarm());
         xxlJobInfoDao.update(exists_jobInfo);
 
 

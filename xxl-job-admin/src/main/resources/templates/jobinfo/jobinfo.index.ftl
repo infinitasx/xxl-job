@@ -89,6 +89,7 @@
 					                  	<th name="alarmEmail" >${I18n.jobinfo_field_alarmemail}</th>
 					                  	<th name="triggerStatus" >${I18n.system_status}</th>
 					                  	<th name="tzName" >${I18n.system_tz}</th>
+					                  	<th name="robotAlarm" >${I18n.robot_alarm}</th>
 					                  	<th name="nextTime" >${I18n.system_next_time}</th>
 					                  	<th>${I18n.system_opt}</th>
 					                </tr>
@@ -185,6 +186,11 @@
                                     <option value="${tz.name}" >${tz.zhName}</option>
                                 </#list>
                             </select>
+                        </div>
+
+                        <label for="lastname" class="col-sm-2 control-label">${I18n.jobinfo_filed_robot_alarm}<font color="black">*</font></label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="robotAlarm" placeholder="${I18n.jobinfo_field_robot_alarm_placeholder}" maxlength="100" >
                         </div>
                     </div>
 
@@ -393,6 +399,11 @@ exit 0
                                     <option shortName="${tz.shortName}" value="${tz.name}" >${tz.zhName}</option>
                                 </#list>
                             </select>
+                        </div>
+
+                        <label for="lastname" class="col-sm-2 control-label">${I18n.jobinfo_filed_robot_alarm}<font color="black">*</font></label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="robotAlarm" placeholder="${I18n.jobinfo_field_robot_alarm_placeholder}" maxlength="100" >
                         </div>
                     </div>
 

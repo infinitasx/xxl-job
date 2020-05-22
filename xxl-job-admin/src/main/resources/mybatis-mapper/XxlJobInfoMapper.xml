@@ -34,6 +34,7 @@
 		<result column="trigger_last_time" property="triggerLastTime" />
 		<result column="trigger_next_time" property="triggerNextTime" />
 		<result column="tz_name" property="tzName" />
+		<result column="robot_alarm" property="robotAlarm" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
@@ -59,7 +60,8 @@
 		t.trigger_status,
 		t.trigger_last_time,
 		t.trigger_next_time,
-		t.tz_name
+		t.tz_name,
+		t.robot_alarm
 	</sql>
 
 	<select id="pageList" parameterType="java.util.HashMap" resultMap="XxlJobInfo">
@@ -131,7 +133,8 @@
 			trigger_status,
 			trigger_last_time,
 			trigger_next_time,
-			tz_name
+			tz_name,
+			robot_alarm
 		) VALUES (
 			#{jobGroup},
 			#{jobCron},
@@ -154,7 +157,8 @@
 			#{triggerStatus},
 			#{triggerLastTime},
 			#{triggerNextTime},
-			#{tzName}
+			#{tzName},
+			#{robotAlarm}
 		);
 		<!--<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 			SELECT LAST_INSERT_ID()
@@ -191,7 +195,8 @@
 			trigger_status = #{triggerStatus},
 			trigger_last_time = #{triggerLastTime},
 			trigger_next_time = #{triggerNextTime},
-			tz_name=#{tzName}
+			tz_name=#{tzName},
+			robot_alarm=#{robotAlarm}
 		WHERE id = #{id}
 	</update>
 

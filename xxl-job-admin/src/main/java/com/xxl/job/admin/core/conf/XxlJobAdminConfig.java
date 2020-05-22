@@ -1,11 +1,13 @@
 package com.xxl.job.admin.core.conf;
 
+import com.xxl.job.admin.conf.RobotAlarmBean;
 import com.xxl.job.admin.dao.XxlJobGroupDao;
 import com.xxl.job.admin.dao.XxlJobInfoDao;
 import com.xxl.job.admin.dao.XxlJobLogDao;
 import com.xxl.job.admin.dao.XxlJobRegistryDao;
 import com.xxl.job.core.biz.AdminBiz;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
@@ -57,6 +59,9 @@ public class XxlJobAdminConfig implements InitializingBean{
     @Resource
     private DataSource dataSource;
 
+    @Autowired
+    private RobotAlarmBean robotAlarmBean ;
+
 
     public String getI18n() {
         return i18n;
@@ -98,4 +103,7 @@ public class XxlJobAdminConfig implements InitializingBean{
         return dataSource;
     }
 
+    public RobotAlarmBean getRobotAlarmBean() {
+        return robotAlarmBean;
+    }
 }
