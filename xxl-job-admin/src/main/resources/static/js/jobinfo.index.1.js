@@ -62,7 +62,7 @@ $(function() {
 						}
 					},
 	                { "data": 'executorParam', "visible" : false},
-					{ "data": 'robotAlarm', "visible" : false},
+
 					{
 						"data": 'jobCron',
 						"visible" : true,
@@ -107,6 +107,7 @@ $(function() {
 							return data;
 						}
 					},
+					{ "data": 'robotAlarm', "visible" : false},
 					{
 						"data": 'triggerNextTime',
 						"width":'10%',
