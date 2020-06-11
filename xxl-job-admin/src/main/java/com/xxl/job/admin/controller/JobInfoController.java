@@ -143,7 +143,13 @@ public class JobInfoController {
 	public ReturnT<String> start(int id) {
 		return xxlJobService.start(id);
 	}
-	
+
+	@RequestMapping("/copy")
+	@ResponseBody
+	public ReturnT<String> copy(int id) {
+		return xxlJobService.copy(id);
+	}
+
 	@RequestMapping("/trigger")
 	@ResponseBody
 	//@PermissionLimit(limit = false)

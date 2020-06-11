@@ -270,6 +270,15 @@ public class XxlJobServiceImpl implements XxlJobService {
 	}
 
 	@Override
+	public ReturnT<String> copy(int id) {
+		XxlJobInfo xxlJobInfo = xxlJobInfoDao.loadById(id);
+		xxlJobInfo.setTriggerStatus(0);
+		xxlJobInfo.setJobDesc(xxlJobInfo.getJobDesc() + "[" + "copy" + "]");
+		xxlJobInfoDao.save(xxlJobInfo);
+		return new ReturnT<String>(String.valueOf(xxlJobInfo.getId()));
+	}
+
+	@Override
 	public ReturnT<String> stop(int id) {
         XxlJobInfo xxlJobInfo = xxlJobInfoDao.loadById(id);
 

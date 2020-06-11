@@ -60,6 +60,14 @@ public interface XxlJobService {
 	public ReturnT<String> start(int id);
 
 	/**
+	 * copy job
+	 *
+	 * @param id
+	 * @return
+	 */
+	public ReturnT<String> copy(int id);
+
+	/**
 	 * stop job
 	 *
 	 * @param id

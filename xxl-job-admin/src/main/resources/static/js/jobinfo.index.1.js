@@ -173,6 +173,7 @@ $(function() {
                                     codeBtn +
                                     '       <li><a href="javascript:void(0);" class="update" >'+ I18n.system_opt_edit +'</a></li>\n' +
                                     '       <li><a href="javascript:void(0);" class="job_operate" _type="job_del" >'+ I18n.system_opt_del +'</a></li>\n' +
+									'       <li><a href="javascript:void(0);" class="copy" >'+ I18n.system_opt_copy +'</a></li>\n' +
                                     '     </ul>\n' +
                                     '   </div>';
 
@@ -273,6 +274,26 @@ $(function() {
 					}
 				}
 			});
+		});
+	});
+
+	$("#job_list").on('click', '.copy',function() {
+		var id = $(this).parents('ul').attr("_id");
+		$.ajax({
+			type : 'POST',
+			url : base_url + "/jobinfo/copy",
+			data : {
+				"id" : id
+			},
+			dataType : "json",
+			success : function(data){
+				if (data.code == 200) {
+					layer.msg( '复制' + I18n.system_success );
+					jobTable.fnDraw(false);
+				} else {
+					layer.msg( data.msg || '复制' + I18n.system_fail );
+				}
+			}
 		});
 	});
 
