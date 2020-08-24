@@ -324,7 +324,54 @@ $(function() {
 		copyText.select();
 		copyText.setSelectionRange(0, 99999); /*For mobile devices*/
 		document.execCommand("copy");
-		layer.msg( '复制成功' );
+		layer.msg( 'Copy success.' );
+	});
+
+	// import
+	$("#import").click(function(){
+		navigator.clipboard.readText()
+			.then(text => {
+				$("#import_data_hidden_input").val(text);
+			})
+		$('#import_data').modal({backdrop: false, keyboard: false}).modal('show');
+	});
+
+	// import data
+	$("#import_data .ok").on('click',function() {
+		var env = $("#evn").val()
+		var import_data = $("#import_data_hidden_input").val()
+		if (import_data === ""){
+			layer.msg('Import data cannot be empty!');
+			return;
+		}
+		try {
+			var job_info = JSON.parse(import_data)
+			var jobDesc = job_info.jobDesc;
+			var jobCron = job_info.jobCron;
+			var executorHandler = job_info.executorHandler;
+			var author = job_info.author;
+			var alarmEmail = job_info.alarmEmail;
+			var robotAlarm = job_info.robotAlarm;
+			var executorParam = job_info.executorParam;
+			if (env == "pro"){
+				var index = executorParam.indexOf("com/")
+				index += 3
+				executorParam = executorParam.substring(index)
+			}
+			$("#add-jobDesc").val(jobDesc);
+			$("#add-jobCron").val(jobCron);
+			$("#add-executorHandler").val(executorHandler);
+			$("#add-author").val(author);
+			$("#add-alarmEmail").val(alarmEmail);
+			$("#add-robotAlarm").val(robotAlarm);
+			$("#add-executorParam").val(executorParam);
+
+			$('#import_data').modal('hide');
+		}catch (err) {
+			layer.alert('Data error!')
+		}
+
+		// layer.msg( 'Copy success.' );
 	});
 
     // job trigger
