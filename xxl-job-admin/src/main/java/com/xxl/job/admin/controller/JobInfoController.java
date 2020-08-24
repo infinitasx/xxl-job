@@ -1,5 +1,6 @@
 package com.xxl.job.admin.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.xxl.job.admin.conf.TimeZoneConfigBean;
 import com.xxl.job.admin.core.exception.XxlJobException;
 import com.xxl.job.admin.core.model.XxlJobGroup;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -148,6 +150,12 @@ public class JobInfoController {
 	@ResponseBody
 	public ReturnT<String> copy(int id) {
 		return xxlJobService.copy(id);
+	}
+
+	@RequestMapping(value = "/exportJobInfo")
+	public @ResponseBody ReturnT<String> exportJobInfo(int id) throws IOException {
+		XxlJobInfo jobInfo = xxlJobService.getById(id) ;
+		return new ReturnT<String>(JSON.toJSONString(jobInfo));
 	}
 
 	@RequestMapping("/trigger")

@@ -458,6 +458,35 @@ exit 0
     </div>
 </div>
 
+
+<#-- export -->
+<div class="modal fade" id="export_data" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" >${I18n.system_opt_export}</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal form" role="form" >
+                    <div class="form-group">
+                        <label for="firstname" class="col-sm-2 control-label">data:</label>
+                        <div class="col-sm-10">
+                            <input type="text" readonly="readonly" class="form-control" id="export_data_hidden_input">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-6">
+                            <button type="button" class="btn btn-primary ok" >复制</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <@netCommon.commonScript />
 <!-- DataTables -->
 <script src="${request.contextPath}/static/adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>

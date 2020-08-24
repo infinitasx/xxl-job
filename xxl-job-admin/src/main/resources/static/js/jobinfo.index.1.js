@@ -174,6 +174,7 @@ $(function() {
                                     '       <li><a href="javascript:void(0);" class="update" >'+ I18n.system_opt_edit +'</a></li>\n' +
                                     '       <li><a href="javascript:void(0);" class="job_operate" _type="job_del" >'+ I18n.system_opt_del +'</a></li>\n' +
 									'       <li><a href="javascript:void(0);" class="copy" >'+ I18n.system_opt_copy +'</a></li>\n' +
+									'       <li><a href="javascript:void(0);" class="export" >'+ I18n.system_opt_export +'</a></li>\n' +
                                     '     </ul>\n' +
                                     '   </div>';
 
@@ -295,6 +296,35 @@ $(function() {
 				}
 			}
 		});
+	});
+
+	$("#job_list").on('click', '.export',function() {
+		var id = $(this).parents('ul').attr("_id");
+		$.ajax({
+			type : 'POST',
+			url : base_url + "/jobinfo/exportJobInfo",
+			data : {
+				"id" : id
+			},
+			dataType : "json",
+			success : function(data){
+				if (data.code == 200) {
+					$("#export_data .form textarea[name='export_data']").val(data.content );
+					$("#export_data_hidden_input").val(data.content)
+					$('#export_data').modal({backdrop: false, keyboard: false}).modal('show');
+				} else {
+					layer.msg( data.msg || '导出' + I18n.system_fail );
+				}
+			}
+		});
+	});
+
+	$("#export_data .ok").on('click',function() {
+		var copyText = document.getElementById("export_data_hidden_input");
+		copyText.select();
+		copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+		document.execCommand("copy");
+		layer.msg( '复制成功' );
 	});
 
     // job trigger

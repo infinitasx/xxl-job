@@ -68,6 +68,13 @@ public interface XxlJobService {
 	public ReturnT<String> copy(int id);
 
 	/**
+	 * get by id
+	 * @param id
+	 * @return
+	 */
+	public XxlJobInfo getById(int id);
+
+	/**
 	 * stop job
 	 *
 	 * @param id

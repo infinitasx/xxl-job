@@ -279,6 +279,11 @@ public class XxlJobServiceImpl implements XxlJobService {
 	}
 
 	@Override
+	public XxlJobInfo getById(int id) {
+		return xxlJobInfoDao.loadById(id);
+	}
+
+	@Override
 	public ReturnT<String> stop(int id) {
         XxlJobInfo xxlJobInfo = xxlJobInfoDao.loadById(id);
 
