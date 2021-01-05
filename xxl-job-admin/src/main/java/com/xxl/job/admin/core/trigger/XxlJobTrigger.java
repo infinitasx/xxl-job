@@ -1,5 +1,6 @@
 package com.xxl.job.admin.core.trigger;
 
+import com.xxl.job.admin.constants.Constants;
 import com.xxl.job.admin.core.conf.XxlJobAdminConfig;
 import com.xxl.job.admin.core.conf.XxlJobScheduler;
 import com.xxl.job.admin.core.model.XxlJobGroup;
@@ -112,7 +113,7 @@ public class XxlJobTrigger {
         TriggerParam triggerParam = new TriggerParam();
         triggerParam.setJobId(jobInfo.getId());
         triggerParam.setExecutorHandler(jobInfo.getExecutorHandler());
-        triggerParam.setExecutorParams("#&#" + jobInfo.getExecutorParam());
+        triggerParam.setExecutorParams(jobInfo.getSystemName() + Constants.SEP + jobInfo.getExecutorParam());
         triggerParam.setExecutorBlockStrategy(jobInfo.getExecutorBlockStrategy());
         triggerParam.setExecutorTimeout(jobInfo.getExecutorTimeout());
         triggerParam.setLogId(jobLog.getId());

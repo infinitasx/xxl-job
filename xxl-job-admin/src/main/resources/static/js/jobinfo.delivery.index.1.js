@@ -6,7 +6,7 @@ $(function() {
 		"processing" : true, 
 	    "serverSide": true,
 		"ajax": {
-			url: base_url + "/jobinfo/pageList?systemName=ordering",
+			url: base_url + "/jobinfo/pageList?systemName=delivery",
 			type:"post",
 	        data : function ( d ) {
 	        	var obj = {};

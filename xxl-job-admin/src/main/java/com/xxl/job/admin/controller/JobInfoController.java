@@ -2,6 +2,7 @@ package com.xxl.job.admin.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.xxl.job.admin.conf.TimeZoneConfigBean;
+import com.xxl.job.admin.constants.Constants;
 import com.xxl.job.admin.core.exception.XxlJobException;
 import com.xxl.job.admin.core.model.XxlJobGroup;
 import com.xxl.job.admin.core.model.XxlJobInfo;
@@ -22,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -57,7 +59,11 @@ public class JobInfoController {
 	private String env ;
 
 	@RequestMapping
-	public String index(HttpServletRequest request, Model model, @RequestParam(required = false, defaultValue = "-1") int jobGroup) {
+	public String index(HttpServletRequest request, Model model, @RequestParam(required = false, defaultValue = "-1") int jobGroup, String systemName) {
+		//兼容以前的路由
+		if (StringUtils.isEmpty(systemName)){
+			systemName = Constants.ORDERING_KEY;
+		}
 
 		model.addAttribute("timeZones",timeZoneConfigBean.list()) ;
 
@@ -81,8 +87,12 @@ public class JobInfoController {
 		model.addAttribute("env", env);
 
 		logger.info("==="+ TimeZone.getDefault().getID());
+		if (systemName.equals(Constants.ORDERING_KEY)){
+			return "jobinfo/jobinfo.index";
+		}else {
+			return "jobinfo/jobinfo.delivery.index";
+		}
 
-		return "jobinfo/jobinfo.index";
 	}
 
 	public static List<XxlJobGroup> filterJobGroupByRole(HttpServletRequest request, List<XxlJobGroup> jobGroupList_all){
@@ -116,9 +126,9 @@ public class JobInfoController {
 	@ResponseBody
 	public Map<String, Object> pageList(@RequestParam(required = false, defaultValue = "0") int start,  
 			@RequestParam(required = false, defaultValue = "10") int length,
-			int jobGroup, int triggerStatus, String jobDesc, String executorHandler, String author) {
+			int jobGroup, int triggerStatus, String jobDesc, String executorHandler, String author, String systemName) {
 		
-		return xxlJobService.pageList(start, length, jobGroup, triggerStatus, jobDesc, executorHandler, author);
+		return xxlJobService.pageList(start, length, jobGroup, triggerStatus, jobDesc, executorHandler, author, systemName);
 	}
 	
 	@RequestMapping("/add")

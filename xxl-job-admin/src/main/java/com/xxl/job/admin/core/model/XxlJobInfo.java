@@ -49,6 +49,11 @@ public class XxlJobInfo {
 	 */
 	private String robotAlarm ;
 
+	/**
+	 * 系统名称
+	 */
+	private String systemName;
+
 	public String getRobotAlarm() {
 		return robotAlarm;
 	}
@@ -239,5 +244,13 @@ public class XxlJobInfo {
 
 	public void setTriggerNextTime(long triggerNextTime) {
 		this.triggerNextTime = triggerNextTime;
+	}
+
+	public String getSystemName() {
+		return systemName;
+	}
+
+	public void setSystemName(String systemName) {
+		this.systemName = systemName;
 	}
 }

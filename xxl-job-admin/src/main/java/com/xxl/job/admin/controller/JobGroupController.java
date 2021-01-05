@@ -141,10 +141,10 @@ public class JobGroupController {
 
 	@RequestMapping("/remove")
 	@ResponseBody
-	public ReturnT<String> remove(int id){
+	public ReturnT<String> remove(int id, String systemName){
 
 		// valid
-		int count = xxlJobInfoDao.pageListCount(0, 10, id, -1,  null, null, null);
+		int count = xxlJobInfoDao.pageListCount(0, 10, id, -1,  null, null, null, systemName);
 		if (count > 0) {
 			return new ReturnT<String>(500, I18nUtil.getString("jobgroup_del_limit_0") );
 		}

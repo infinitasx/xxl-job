@@ -19,7 +19,7 @@
 	<div class="content-wrapper">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
-			<h1>${I18n.ordering_jobinfo_name}</h1>
+			<h1>${I18n.delivery_jobinfo_name}</h1>
 		</section>
 		
 		<!-- Main content -->
@@ -202,7 +202,7 @@
 						</div>
                     </div>
 
-                    <input type="hidden" name="systemName" value="ordering">
+                    <input type="hidden" name="systemName" value="delivery">
 
                     <hr>
 					<div class="form-group">
@@ -418,7 +418,7 @@ exit 0
 						</div>
                     </div>
 
-                    <input type="hidden" name="systemName" value="ordering">
+                    <input type="hidden" name="systemName" value="delivery">
 
 					<hr>
 					<div class="form-group">
@@ -529,6 +529,6 @@ exit 0
 <script src="${request.contextPath}/static/adminlte/bower_components/moment/moment.min.js"></script>
 <#-- cronGen -->
 <script src="${request.contextPath}/static/plugins/cronGen/cronGen.js"></script>
-<script src="${request.contextPath}/static/js/jobinfo.index.1.js"></script>
+<script src="${request.contextPath}/static/js/jobinfo.delivery.index.1.js"></script>
 </body>
 </html>

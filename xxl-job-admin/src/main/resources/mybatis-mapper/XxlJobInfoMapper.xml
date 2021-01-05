@@ -35,6 +35,7 @@
 		<result column="trigger_next_time" property="triggerNextTime" />
 		<result column="tz_name" property="tzName" />
 		<result column="robot_alarm" property="robotAlarm" />
+		<result column="system_name" property="systemName" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
@@ -61,7 +62,8 @@
 		t.trigger_last_time,
 		t.trigger_next_time,
 		t.tz_name,
-		t.robot_alarm
+		t.robot_alarm,
+		t.system_name
 	</sql>
 
 	<select id="pageList" parameterType="java.util.HashMap" resultMap="XxlJobInfo">
@@ -82,6 +84,9 @@
 			</if>
 			<if test="author != null and author != ''">
 				AND t.author like CONCAT(CONCAT('%', #{author}), '%')
+			</if>
+			<if test="systemName != null and systemName != ''">
+				AND t.system_name = #{systemName}
 			</if>
 		</trim>
 		ORDER BY id DESC
@@ -106,6 +111,9 @@
 			</if>
 			<if test="author != null and author != ''">
 				AND t.author like CONCAT(CONCAT('%', #{author}), '%')
+			</if>
+			<if test="systemName != null and systemName != ''">
+				AND t.system_name = #{systemName}
 			</if>
 		</trim>
 	</select>
@@ -134,7 +142,8 @@
 			trigger_last_time,
 			trigger_next_time,
 			tz_name,
-			robot_alarm
+			robot_alarm,
+			system_name
 		) VALUES (
 			#{jobGroup},
 			#{jobCron},
@@ -158,7 +167,8 @@
 			#{triggerLastTime},
 			#{triggerNextTime},
 			#{tzName},
-			#{robotAlarm}
+			#{robotAlarm},
+			#{systemName}
 		);
 		<!--<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 			SELECT LAST_INSERT_ID()
