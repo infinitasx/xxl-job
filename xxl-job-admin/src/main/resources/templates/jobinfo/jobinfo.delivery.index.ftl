@@ -12,7 +12,7 @@
 	<!-- header -->
 	<@netCommon.commonHeader />
 	<!-- left -->
-	<@netCommon.commonLeft "jobinfo" />
+	<@netCommon.commonLeft "delivery-jobinfo" />
 
     <input type="hidden" id="evn" value="${env}">
 	<!-- Content Wrapper. Contains page content -->
